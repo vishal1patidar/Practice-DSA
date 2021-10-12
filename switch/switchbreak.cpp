@@ -9,8 +9,8 @@ int main(){
     case 18: 
         cout<<"You are 18"<<endl;
         break;
-    case 22: 
-        cout<<"You are 22"<<endl;
+    case 24: 
+        cout<<"You are 24"<<endl;
         break;
     case 2: 
         cout<<"You are 2"<<endl;
