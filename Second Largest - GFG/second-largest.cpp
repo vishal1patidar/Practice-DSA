@@ -5,24 +5,40 @@ using namespace std;
 
  // } Driver Code Ends
 //User function template for C++
+
 class Solution{
-public:	
+public:
 	// Function returns the second
 	// largest elements
 	int print2largest(int arr[], int n) {
-	    // code here
-	    int sec = -1, lar = arr[0];
-	    
-	    for(int i = 1; i < n; i++){
-	        if(arr[i] > lar){
-	            sec = lar;
-	            lar = arr[i];
+	    int i, first, second;
+
+	    // There should be at least two elements
+	    if (n < 2) {
+	        return -1;
+	    }
+
+	    first = second = INT_MIN;
+	    for (i = 0; i < n; i++) {
+
+	        // If current element is greater
+	        // than first then update both
+	        // first and second
+	        if (arr[i] > first) {
+	            second = first;
+	            first = arr[i];
 	        }
-	        else if(sec < arr[i] && lar > arr[i]){
-	            sec = arr[i];
+
+	        // If arr[i] is in between first
+	        // and second then update second
+	        else if (arr[i] > second && arr[i] != first) {
+	            second = arr[i];
 	        }
 	    }
-	    return sec;
+	    if (second == INT_MIN)
+	        return -1;
+	    else
+	        return second;
 	}
 };
 
