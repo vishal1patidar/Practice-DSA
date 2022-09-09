@@ -1,29 +1,20 @@
 class Solution {
 public:
-    bool isSubsequence(string s, string t) 
-    {
-        if(s.size() > t.size())  // one corner case
-        {
-            return false;
-        }
-        int i=0;// pointing string s
-        int j=0;// pointing string t
-        
-        while(i<s.size() and j < t.size())
-        {
-            if(s[i] == t[j])
-            {
-                i++;
-                j++;
-            }
-            else
-                j++;
-        }
-        
-        if(i == s.size())
-        {
-            return true;
-        }
-        return false;   
+    bool isSubsequence(string s, string t) {
+        int n = s.length(),m=t.length();
+        int j = 0; 
+    // For index of s (or subsequence
+ 
+    // Traverse s and t, and
+    // compare current character
+    // of s with first unmatched char
+    // of t, if matched
+    // then move ahead in s
+    for (int i = 0; i < m and j < n; i++)
+        if (s[j] == t[i])
+            j++;
+ 
+    // If all characters of s were found in t
+    return (j == n);
     }
 };
