@@ -1,18 +1,22 @@
 class Solution {
 public:
-	vector<vector<int>> combine(int n, int k) {
-		vector<vector<int>> result;
-		int i = 0;
-		vector<int> p(k, 0);
-		while (i >= 0) {
-			p[i]++;
-			if (p[i] > n) --i;
-			else if (i == k - 1) result.push_back(p);
-			else {
-			    ++i;
-			    p[i] = p[i - 1];
-			}
-		}
-		return result;
-	}
+    void backTrack(int n,int k,int it,vector<vector<int>> &ans,vector<int> &res){
+        
+        if(res.size()==k){
+            ans.push_back(res);
+            return;
+        }
+        for(int i=it;i<=n;i++){
+            res.push_back(i);
+            backTrack(n,k,i+1,ans,res);
+            res.pop_back();
+        }
+    }
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> ans;
+        vector<int> res;
+        backTrack(n,k,1,ans,res);
+        return ans;
+    }
+
 };
