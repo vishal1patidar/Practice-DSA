@@ -1,29 +1,42 @@
+/*
+   basic idea:
+   set a book with 128 capacity to check if the char has appeared.    //book: vector<bool>(128)
+   set count, longest, left;    //record where the left boundary now count contained is
+   traverse the string s:
+        if(s[i] not in the book)    //book[s[i]] == false
+            count++
+            mark s[i] in the book   //book[s[i]] = true
+        else
+            update longest      //longest = max(longest, count)
+            update left and book:
+                left++ until meet the repeat char s[i]
+                 update book to remove the char s[left]
+            update count = i-left+1
+    return longest
+   */
 class Solution {
-public:
-    int lengthOfLongestSubstring(string s) {
-        //record the appearence conditions of the elements
-        vector<int> record(128, -1); 
-        
-        int ans = 0;
-        
-        //record the index of the newest repeated element 
-        //start from -1 since for the 0th element : 0-(-1)=1
-        int newestRepeated = -1;
-        
-        for(int i = 0; i < s.size(); i++){
-            //this element has already appeared 
-            if(record[s[i]] != -1) {
-                //update the index of the newest repeated element
-                newestRepeated = max(newestRepeated, record[s[i]]);
+    public:
+        int lengthOfLongestSubstring(string s) {
+            vector<bool>book(128,false);
+            int left, cnt, longest;
+            left = 0, cnt = 0, longest = 0;
+            for(int i = 0;i < s.size();i++){
+                if(book[s[i]] == false){
+                    cnt++;
+                    book[s[i]] = true;
+                }
+                else{
+                    longest = max(longest, cnt);
+                    while(s[left] != s[i]){
+                        book[s[left]] = false;
+                        left++;
+                    }
+                    left++;
+                    cnt = i-left+1;
+
+                }
             }
-            
-            //compare the length of the current substring with the current longest substring 
-            ans = max(ans, i-newestRepeated);
-            
-            //update the newest appearence of this element
-            record[s[i]] = i; 
+            longest = max(longest, cnt);
+            return longest;
         }
-        
-        return ans;
-    }
 };
