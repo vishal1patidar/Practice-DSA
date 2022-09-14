@@ -1,27 +1,53 @@
 class Solution {
 public:
-    int m = 0, n = 0;
+bool isvalid(int i,int j,int n,int m,vector<vector<int>>& grid)
+    {
+        if(i>=0&&i<n&&j>=0&&j<m&&grid[i][j]==1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    void dfs(int i,int j,vector<vector<int>>& grid,int n,int m,int &area)
+    {
+        grid[i][j]=0;
+        area++;
+        if(isvalid(i+1,j,n,m,grid))
+        {
+            dfs(i+1,j,grid,n,m,area);
+        }
+         if(isvalid(i-1,j,n,m,grid))
+        {
+            dfs(i-1,j,grid,n,m,area);
+        }
+         if(isvalid(i,j+1,n,m,grid))
+        {
+            dfs(i,j+1,grid,n,m,area);
+        }
+         if(isvalid(i,j-1,n,m,grid))
+        {
+            dfs(i,j-1,grid,n,m,area);
+        }
+    }
     int maxAreaOfIsland(vector<vector<int>>& grid) {
-        m = grid.size();
-        n = grid[0].size();
-        int area = 0, ans = 0;
-        for(int i = 0; i < m; i++){
-            for(int j  = 0; j < n; j++){
-                if(grid[i][j] == 1){
-                    area = explore(grid, i, j);
-                    ans = max(ans, area);
+       int ans=0;
+        int n=grid.size();
+        int m=grid[0].size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                int area=0;
+                if(grid[i][j]==1)
+                {
+                    dfs(i,j,grid,n,m,area);
+                    ans=max(area,ans);
                 }
             }
         }
         return ans;
-    }
-    int explore(vector<vector<int>>& g, int row, int col){
-        if(row < 0 or col < 0 or row >= m or col >= n or g[row][col] == 0){
-            return 0;
-        }else{
-            g[row][col] = 0;
-            return 1 + explore(g, row+1, col) + explore(g, row-1, col) + 
-                explore(g, row, col+1) + explore(g, row, col-1);
-        }
     }
 };
