@@ -1,27 +1,16 @@
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
-       //return binary_search(nums.begin() ,  nums.end() , );
-        int start = 0;
-        int end = nums.size()-1;
-        int mid = start + (end-start)/2;
+    int search(vector<int>& nums, int target) 
+    {
+        int lower=0, upper=nums.size()-1, mid;
         
-        while(start <= end)
+        while(upper-lower>1)
         {
-            if(nums[mid] == target)
-            {
-                return mid;
-            }
-            else if(nums[mid] > target)
-            {
-                end = mid-1;
-            }
-            else{
-                start = mid +1;
-            }
-            mid = start + (end-start)/2;
+            mid = (upper + lower) / 2;
+            target>nums[mid]? lower=mid+1 : upper=mid;
         }
+        if(target==nums[upper]) return upper;
+        if(target==nums[lower]) return lower;
         return -1;
-        
     }
 };
