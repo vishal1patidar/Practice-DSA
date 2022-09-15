@@ -11,14 +11,24 @@
  */
 class Solution {
 public:
-   bool isValidBST(TreeNode* root) {
-    return isValidBST(root, NULL, NULL);
-}
-
-bool isValidBST(TreeNode* root, TreeNode* minNode, TreeNode* maxNode) {
-    if(!root) return true;
-    if(minNode && root->val <= minNode->val || maxNode && root->val >= maxNode->val)
-        return false;
-    return isValidBST(root->left, minNode, root) && isValidBST(root->right, root, maxNode);
-}
+    void check(TreeNode* root , vector<int> &vec){
+        if(root == NULL) return;
+        
+        check(root->left,vec);
+        vec.push_back(root->val);
+        check(root->right,vec);
+        
+    }
+    bool isValidBST(TreeNode* root) {
+        
+        vector<int> vec;
+        
+        check(root , vec);
+        
+        for(int  i= 1 ; i<vec.size() ;i++){
+            if(vec[i-1]>=vec[i]) return false;
+        }
+        
+        return true;
+    }
 };
