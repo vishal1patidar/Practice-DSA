@@ -1,53 +1,42 @@
 class Solution {
 public:
-    void bfs(vector<vector<int>>& ans , vector<vector<int>>& vis , vector<vector<int>>& mat , int rowSize , int colSize){
-        queue<pair<pair<int,int>,int>> q;
+    vector<vector<int>> updateMatrix(vector<vector<int>>& v) {
+        int m = v.size(), n = v[0].size();
+        vector<vector<int>> dist(m, vector<int>(n , 100000));
+        queue<vector<int>> q;
+        for(int i=0; i<m; i++)
+        {
+            for(int j=0; j<n; j++)
+            {
+                if(v[i][j]==0)
+                { 
+                    dist[i][j] = 0;
+                    q.push({ i, j});
+                }
+                else
+                    v[i][j]=100000;
+            }
+        }        
+        vector<vector<int>> moves = { {0, 1}, {0, -1}, {1, 0}, {-1, 0} };
         
-        for(int i = 0 ; i < mat.size() ; i++){
-            for(int j = 0 ; j < mat[0].size() ; j++){
-                if(mat[i][j] == 0){
-                    q.push({{i , j} , 0});
-                    vis[i][j] = 1;
+        while(!q.empty())
+        {
+            int x = q.front()[0], y = q.front()[1]; 
+            q.pop();
+            for(auto mo : moves)
+            {
+                int newx = x + mo[0], newy = y + mo[1];
+                
+                if(newx>=0 && newx < m && newy>=0 && newy<n)
+                {
+                    if(v[newx][newy] > v[x][y] + 1)
+                    {
+                        v[newx][newy] = v[x][y] + 1 ;
+                        q.push({newx, newy});
+                    }
                 }
             }
-        }
-        
-        while(!q.empty()){
-            int row = q.front().first.first;
-            int col = q.front().first.second;
-            int dis = q.front().second;
-            q.pop();
-            ans[row][col] = dis;
-            
-            if(row - 1 >= 0 && vis[row-1][col] == -1){
-                q.push({{row-1 , col} , dis + 1});
-                vis[row-1][col] = 1;
-            }
-            
-            if(col - 1 >= 0 && vis[row][col-1] == -1){
-                q.push({{row , col-1} , dis + 1});
-                vis[row][col-1] = 1;
-            }
-            
-            if(row + 1 < rowSize && vis[row+1][col] == -1){
-                q.push({{row+1 , col} , dis + 1});
-                vis[row+1][col] = 1;
-            }
-            
-            if(col + 1 < colSize && vis[row][col+1] == -1){
-                q.push({{row , col+1} , dis + 1});
-                vis[row][col+1] = 1;
-            }
-        }
-    }
-    
-    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
-        
-        vector<vector<int>> ans(mat.size() , vector<int> (mat[0].size()));
-        vector<vector<int>> vis(mat.size() , vector<int> (mat[0].size() , -1));
-        
-        bfs(ans , vis , mat , mat.size() , mat[0].size());
-        
-        return ans;      
+        }       
+        return v;            
     }
 };
