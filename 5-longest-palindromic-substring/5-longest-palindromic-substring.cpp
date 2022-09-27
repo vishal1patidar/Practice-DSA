@@ -1,12 +1,9 @@
-/*
-Solution 1: Brute Force Approach (Give TLE)
+// Generate all substring and check it is palindrome or not.
+// If it is palindrome then check it is longest or not.
 
-Generate all substring and check it is palindrome or not.
-If it is palindrome then check it is longest or not.
+// Time Complexity - O(N^3),  O(N^2) to generate all substring and O(N) to check it is palindrome or not.
+// Space complexity - O(1).
 
-Time Complexity - O(N^3),  O(N^2) to generate all substring and O(N) to check it is palindrome or not.
-Space complexity - O(1).
-*/
 
 // class Solution
 // {
