@@ -1,26 +1,10 @@
 class Solution {
 public:
-int longestPalindrome(string s) {
-int ar[58];
-int cnt=1;
-memset(ar,0,sizeof(ar));
-for(int i=0;i<s.size();i++)
-{
-ar[s[i]-'A']++;
-}
-
-    for(int i=0;i<58;i++)
-    {
-        if(ar[i]>1)
-        {
-            ar[i]/=2;
-            ar[i]*=2;
-            cnt+=ar[i];
-        }
+    int longestPalindrome(string s) {
+        int freq[128]={};
+        for(auto c:s) ++freq[c];
+        int OddGroup = 0; //count of uniq char which shows up odd times, help me if you have better naming 
+        for(auto i:freq) OddGroup += i & 1;
+        return s.size() - OddGroup + (OddGroup > 0);        
     }
-    if(cnt>s.size())
-    return cnt-1;
-    else
-        return cnt;
-}
-};
+};      
