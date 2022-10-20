@@ -1,13 +1,13 @@
 <h2><a href="https://leetcode.com/problems/integer-to-roman/">12. Integer to Roman</a></h2><h3>Medium</h3><hr><div><p>Roman numerals are represented by seven different symbols:&nbsp;<code>I</code>, <code>V</code>, <code>X</code>, <code>L</code>, <code>C</code>, <code>D</code> and <code>M</code>.</p>
 
-<pre><strong>Symbol</strong>       <strong>Value</strong>
+<pre style="position: relative;"><strong>Symbol</strong>       <strong>Value</strong>
 I             1
 V             5
 X             10
 L             50
 C             100
 D             500
-M             1000</pre>
+M             1000<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>For example,&nbsp;<code>2</code> is written as <code>II</code>&nbsp;in Roman numeral, just two one's added together. <code>12</code> is written as&nbsp;<code>XII</code>, which is simply <code>X + II</code>. The number <code>27</code> is written as <code>XXVII</code>, which is <code>XX + V + II</code>.</p>
 
@@ -24,24 +24,24 @@ M             1000</pre>
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> num = 3
+<pre style="position: relative;"><strong>Input:</strong> num = 3
 <strong>Output:</strong> "III"
 <strong>Explanation:</strong> 3 is represented as 3 ones.
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> num = 58
+<pre style="position: relative;"><strong>Input:</strong> num = 58
 <strong>Output:</strong> "LVIII"
 <strong>Explanation:</strong> L = 50, V = 5, III = 3.
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong class="example">Example 3:</strong></p>
 
-<pre><strong>Input:</strong> num = 1994
+<pre style="position: relative;"><strong>Input:</strong> num = 1994
 <strong>Output:</strong> "MCMXCIV"
 <strong>Explanation:</strong> M = 1000, CM = 900, XC = 90 and IV = 4.
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
