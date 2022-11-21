@@ -1,16 +1,7 @@
 class Solution {
 public:
-    double average(vector<int>& v) {
-        int mi = min_element(v.begin(), v.end()) - v.begin();
-        int ma = max_element(v.begin(), v.end()) - v.begin();
-        int n = v.size();        
-        double ans = 0;
-        for (int i=0 ; i<n ; i++)
-        {
-            if (i != mi && i != ma)
-                ans += v[i];
-        }
-        
-        return ans/(n-2);
-    }
+    double average(vector<int>& s) {
+    return (accumulate(begin(s), end(s), 0.) - *min_element(begin(s), end(s)) 
+        - *max_element(begin(s), end(s))) / (s.size() - 2);
+}
 };
