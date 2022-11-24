@@ -1,23 +1,30 @@
-//TC-O(n)
-//SC-O(n)
 class Solution {
 public:
     bool areAlmostEqual(string s1, string s2) {
-       unordered_map<char,int>m1,m2;
-        int cnt=0;
-        for(int i=0;i<s1.size();i++){
+        // no swap is also available count==0
+        // find places where differ and count
+        int count=0;//should not exceed 2
+        int a=-1,b=-1;
+        for(int i=0;i<s1.length();i++){
             if(s1[i]!=s2[i]){
-                cnt++;
+                if(a==-1){
+                    a=i;
+                }
+                else{
+                    b=i;
+                }
+                count++;
             }
-            m1[s1[i]]++; 
         }
-        for(int i=0;i<s2.size();i++){
-           
-            m2[s2[i]]++; 
-        }
-        if((cnt==2 || s1==s2) && m1==m2){
+        if(count==0){
             return true;
         }
-        return false;
+        else if(count==2&&s1[a]==s2[b]&&s1[b]==s2[a]){
+            return true;
+        }
+        else {
+            return false;
+        }
+    return false;
     }
 };
